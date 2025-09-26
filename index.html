@@ -9,9 +9,12 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <img src="profile.jpg" alt="Om Govind Jha" class="profile-img">
-            <h1>Om Govind Jha</h1>
-            <p>BS in Computer Science & Engineering at IISER Bhopal</p>
+            <div class="sidebar-header">
+                <img src="profile.jpg" alt="Om Govind Jha" class="profile-img">
+                <h1 class="sidebar-title">Om Govind Jha</h1>
+            </div>
+            <p class="sidebar-subtitle">BS in Computer Science & Engineering at IISER Bhopal</p>
+            <button id="sidebar-toggle">☰</button>
             <nav class="nav">
                 <a href="#about" class="nav-item active">About</a>
                 <a href="#projects" class="nav-item">Projects</a>
@@ -33,59 +36,82 @@
 
             <section id="projects" class="content-section">
                 <h2>Projects</h2>
+                
                 <div class="project">
-                    <h3>Localised learning in classification and Regression Tasks</h3>
-                    <p><em>Supervisor: Dr. Ayon Borthakur, IIT Guwahati | (May 2025 - ongoing)</em></p>
-                    <ul>
-                        <li>Implemented and analyzed memory consumption and accuracy of neural networks without traditional back-propagation.</li>
-                        <li>Developed a new strategy to train Vision Transformer (ViT) models from scratch by combining step-wise label denoising and block-wise local training.</li>
-                        <li>Extended this work for object detection, reducing memory usage compared to traditional backpropagation methods.</li>
-                    </ul>
+                    <div class="project-text">
+                        <h3>Localised learning in classification and Regression Tasks</h3>
+                        <p>This research explores alternatives to traditional back-propagation in neural networks, aiming to reduce computational and memory overhead. We implemented and analyzed novel training strategies, such as those inspired by "NoProp," to understand their efficiency and accuracy. The project's goal is to make model training more scalable and accessible, particularly for complex models like Vision Transformers, by developing block-wise local training methods that are less resource-intensive yet maintain high performance.</p>
+                    </div>
+                    <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
                 </div>
+
                 <div class="project">
-                    <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
-                    <p><em>Supervisor: Dr. Kundan Kandhway, IISER Bhopal | (Nov 2024 - Mar 2025)</em></p>
-                    <ul>
-                        <li>Deployed and evaluated various ML models (Logistic Regression, XGBoost, NNs) to predict match outcomes.</li>
-                        <li>Achieved a mean test accuracy of 73% for 1st innings predictions and 84.6% for 2nd innings.</li>
-                        <li>Used SHAP values to determine the significance of features in model predictions.</li>
-                    </ul>
+                    <div class="project-text">
+                        <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
+                        <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We developed an adaptive system that deploys various machine learning models, including XGBoost and Neural Networks, switching between them over-by-over based on performance. By using SHAP (SHapley Additive exPlanations), we gained deep insights into which in-game features most significantly influence the match outcome. This work is useful for creating more dynamic and precise predictive tools for sports analytics.</p>
+                    </div>
+                    <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
                 </div>
+
                 <div class="project">
-                    <h3>Vehicle detection and speed tracking</h3>
-                    <p><em>Supervisor: Dr. Akshay Agarwal, IISER Bhopal | (Sep 2024 - Nov 2024)</em></p>
-                    <ul>
-                        <li>Trained a YOLOv8 model for vehicle detection in video footage.</li>
-                        <li>Applied perspective transformation to accurately calculate vehicle speeds.</li>
-                    </ul>
+                    <div class="project-text">
+                        <h3>Vehicle detection and speed tracking</h3>
+                        <p>The purpose of this project was to build an automated system for monitoring traffic flow and enforcing speed limits. By training a YOLOv8 model, we achieved real-time vehicle detection and classification from video feeds. The system uses perspective transformation to accurately calculate the speed of each vehicle as it passes through a user-defined zone. This technology is highly valuable for intelligent traffic management systems, enhancing road safety and surveillance capabilities.</p>
+                    </div>
+                     <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
+                </div>
+
+                <div class="project">
+                     <div class="project-text">
+                        <h3>Dimensionality Reduction Analysis</h3>
+                        <p>High-dimensional data can be computationally expensive and difficult to interpret. This project provides a comparative analysis of key dimensionality reduction techniques like PCA, LDA, and t-SNE. We applied these algorithms to various datasets to evaluate their effectiveness in preserving important data structures while reducing complexity. The work serves as a practical guide for selecting the appropriate technique for feature extraction and data visualization in machine learning workflows.</p>
+                    </div>
+                     <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
+                </div>
+
+                 <div class="project">
+                     <div class="project-text">
+                        <h3>Crater and Boulder Detection on Planetary Surfaces</h3>
+                        <p>This project automates the identification of geological features from planetary images, a critical task for rover navigation and scientific analysis. We implemented a computer vision pipeline using the Canny edge detector and Circular Hough Transform to accurately locate craters and boulders. This automated approach is far more efficient than manual analysis, enabling faster mapping of extraterrestrial surfaces and aiding in the selection of safe landing sites for future missions.</p>
+                    </div>
+                     <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-text">
+                        <h3>Image Classification with SIFT, BoW, and HOG</h3>
+                        <p>This project delves into classical feature-based image classification methods. We implemented the Scale-Invariant Feature Transform (SIFT) to extract robust keypoints from images, which were then clustered into a "Bag of Visual Words" (BoW). By creating histograms from these visual words, alongside Histogram of Oriented Gradients (HOG) features, we built a powerful model for classifying images. This work is fundamental to understanding the building blocks of many modern computer vision systems.</p>
+                    </div>
+                     <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-text">
+                        <h3>Data Visualisation: Energy, Occupancy, and Weather</h3>
+                        <p>The goal of this project was to uncover hidden patterns and relationships within complex, multi-source datasets. By merging and visualizing data on energy consumption, building occupancy, and corresponding weather conditions, we aimed to identify key factors influencing energy usage. This type of analysis is crucial for developing smarter, more efficient energy management systems and promoting sustainable building practices through data-driven insights.</p>
+                    </div>
+                     <div class="project-image">
+                        <img src="placeholder.png" alt="Project result image">
+                    </div>
                 </div>
             </section>
 
             <section id="skills" class="content-section">
-                <h2>Technical Skills & Awards</h2>
-                <h3>Skills</h3>
-                <ul>
-                    <li><strong>Python:</strong> NumPy, Pandas, MatPlotlib, Seaborn, Scikit-learn, PyTorch, Flower Framework</li>
-                    <li><strong>C/C++:</strong> Linked list, Stacks, Queue, Heaps, Binary Search Tree</li>
-                    <li><strong>SQL:</strong> Basic queries, commands, and aggregate functions</li>
-                    <li><strong>Tools:</strong> MATLAB, AutoCAD</li>
-                </ul>
-                <h3>Awards & Achievements</h3>
-                <ul>
-                    <li>Reliance Foundation Scholarship (2022-2026)</li>
-                    <li>INSA-IASC-NASI Summer Research Fellow at IISc Bengaluru (2024)</li>
-                    <li>Teaching Assistant for "Data Science in Practice" (2025)</li>
-                </ul>
-            </section>
-
+                </section>
             <section id="education" class="content-section">
-                <h2>Education</h2>
-                <p><strong>BS Computer Science and Engineering, Minor Data Science</strong> (CPI: 8.76)</p>
-                <p><em>Indian Institute of Science Education and Research, Bhopal | (Dec 2022 - May 2026)</em></p>
-                <br>
-                <p><strong>All India Senior School Certificate Examination</strong> (Score: 94.2%)</p>
-                <p><em>Chinmaya Vidyalaya Bokaro Steel City, Jharkhand</em></p>
-            </section>
+                </section>
         </main>
     </div>
     <script src="script.js"></script>
