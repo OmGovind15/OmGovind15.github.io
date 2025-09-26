@@ -29,3 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         container.classList.toggle('collapsed');
     });
 });
+// --- MODAL LOGIC ---
+const openModalTriggers = document.querySelectorAll('[data-modal-target]');
+const closeModalButtons = document.querySelectorAll('.modal-close');
+const modals = document.querySelectorAll('.modal');
+openModalTriggers.forEach(trigger=>{trigger.addEventListener('click',()=>{const modal=document.querySelector(trigger.dataset.modalTarget);modal.classList.add('active');});});
+closeModalButtons.forEach(button=>{button.addEventListener('click',()=>{const modal=button.closest('.modal');modal.classList.remove('active');});});
+modals.forEach(modal=>{modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('active');}});});
