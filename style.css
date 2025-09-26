@@ -1,71 +1,100 @@
+/* Basic Setup & Dark Theme */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
+    background-color: #121212;
+    color: #e0e0e0;
     margin: 0;
-    padding: 0;
-    background: #f8f9fa;
-    color: #343a40;
+    font-size: 1.1rem;
 }
+
+/* Two-column Layout */
 .container {
-    max-width: 900px;
-    margin: auto;
-    overflow: auto;
-    padding: 0 20px;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
-header {
-    background: #ffffff;
-    color: #333;
-    padding: 2rem 0;
-    text-align: center;
-    border-bottom: 1px solid #dee2e6;
+
+/* Left Sidebar Styling */
+.sidebar {
+    width: 300px;
+    padding-right: 40px;
+    position: sticky;
+    top: 40px;
+    align-self: flex-start;
 }
-header h1 {
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333;
+    margin-bottom: 20px;
+}
+
+.sidebar h1 {
+    font-size: 2rem;
     margin: 0;
 }
-header nav ul {
-    padding: 0;
-    list-style: none;
-    margin-top: 20px;
+
+.sidebar p {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 30px;
 }
-header nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-header nav a {
-    color: #007bff;
+
+.nav a {
+    display: block;
+    padding: 10px 0;
+    color: #a0a0a0;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s;
 }
-section {
-    background: #ffffff;
-    margin: 20px 0;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+.nav a:hover, .nav a.active {
+    color: #ffffff;
 }
-section h2 {
-    color: #333;
+
+.links {
+    margin-top: 30px;
+}
+
+.links a {
+    margin-right: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Right Main Content Styling */
+.main-content {
+    flex: 1;
+}
+
+.content-section {
+    display: none; /* Hide all sections by default */
+}
+
+.content-section.active {
+    display: block; /* Show only the active section */
+}
+
+.main-content h2 {
+    font-size: 2.5rem;
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
-    margin-top: 0;
-}
-.project {
     margin-bottom: 25px;
 }
-.project h3 {
-    margin-bottom: 5px;
+
+.project {
+    margin-bottom: 30px;
 }
-.project p {
-    margin-top: 0;
+
+ul {
+    padding-left: 20px;
 }
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #6c757d;
-}
-a {
-    color: #007bff;
-}
-a:hover {
-    text-decoration: underline;
+
+li {
+    margin-bottom: 10px;
 }
