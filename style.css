@@ -51,7 +51,7 @@ body {
 .main-content h2 { font-size: 2.5rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 25px; }
 .projects-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 25px;
 }
 /* Project-specific Layout */
@@ -86,5 +86,6 @@ body {
 .modal-close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; }
 .modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
 .modal-grid img { width: 100%; border-radius: 6px; }
+
 
 
