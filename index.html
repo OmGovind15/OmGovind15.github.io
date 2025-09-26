@@ -175,7 +175,13 @@
                             <p>High-dimensional data can be computationally expensive and difficult to interpret. This project provides a comparative analysis of key dimensionality reduction techniques like PCA, LDA, and t-SNE. We applied these algorithms to various datasets to evaluate their effectiveness in preserving important data structures while reducing complexity. The work serves as a practical guide for selecting the appropriate technique for feature extraction and data visualization in machine learning workflows.</p>
                         </div>
                          <div class="project-image">
-                            <img src="https://via.placeholder.com/300x200/444/fff?text=Project+4" alt="Project result image">
+                            <div class="gallery-thumbnail" data-modal-target="#dr-modal">
+                                <img src="dr1.png" alt="Dimensionality Reduction Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
     
@@ -306,8 +312,21 @@
             });
         });
     </script>
+    <div class="modal" id="dr-modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Dimensionality Reduction Results</h2>
+        <div class="modal-grid">
+            <img src="dr1.png" alt="Dimensionality Reduction Image 1">
+            <img src="dr2.png" alt="Dimensionality Reduction Image 2">
+            <img src="dr3.png" alt="Dimensionality Reduction Image 3">
+            <img src="dr4.png" alt="Dimensionality Reduction Image 4">
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
 
 
 
