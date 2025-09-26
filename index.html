@@ -7,107 +7,87 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <div class="container">
-            [cite_start]<h1>Om Govind Jha [cite: 1]</h1>
-            [cite_start]<p>BS in Computer Science and Engineering, Minor in Data Science at IISER Bhopal [cite: 5, 6]</p>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills & Awards</a></li>
-                    <li><a href="#education">Education</a></li>
-                </ul>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="profile.jpg" alt="Om Govind Jha" class="profile-img">
+            <h1>Om Govind Jha</h1>
+            <p>BS in Computer Science & Engineering at IISER Bhopal</p>
+            <nav class="nav">
+                <a href="#about" class="nav-item active">About</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#skills" class="nav-item">Skills & Awards</a>
+                <a href="#education" class="nav-item">Education</a>
             </nav>
-        </div>
-    </header>
-
-    <main class="container">
-
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                [cite_start]I am a Computer Science and Engineering student at the Indian Institute of Science Education and Research, Bhopal[cite: 3, 6]. [cite_start]My primary areas of interest include Deep Learning, Efficient AI for Edge Devices, Federated Learning, Statistics, and Game Theory[cite: 17, 18, 19, 20]. Below you will find a summary of my projects, skills, and academic background.
-            </p>
-            <p>
-                [cite_start]<strong>Email:</strong> <a href="mailto:om22@iiserb.ac.in">om22@iiserb.ac.in</a> [cite: 3] [cite_start]/ <a href="mailto:omgovinds15@gmail.com">omgovinds15@gmail.com</a> [cite: 4] | 
-                <a href="https://github.com/your-github-username" target="_blank">GitHub</a> | 
+             <div class="links">
+                <a href="mailto:omgovinds15@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/your-username" target="_blank">GitHub</a>
                 <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">LinkedIn</a>
-            </p>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                [cite_start]<h3>Localised learning in classification and Regression Tasks [cite: 22]</h3>
-                [cite_start]<p><em>Supervisor: Dr. Ayon Borthakur, IIT Guwahati [cite: 23]</em> | [cite_start]<em>(May 2025 - ongoing) [cite: 24]</em></p>
-                <ul>
-                    [cite_start]<li>Implemented and analyzed memory consumption and accuracy of neural networks without traditional back-propagation[cite: 25, 26].</li>
-                    [cite_start]<li>Developed a new strategy to train Vision Transformer (ViT) models from scratch by combining step-wise label denoising and block-wise local training[cite: 27].</li>
-                    [cite_start]<li>Extended this work for object detection, reducing memory usage compared to traditional backpropagation methods[cite: 28].</li>
-                </ul>
             </div>
+        </aside>
 
-            <div class="project">
-                [cite_start]<h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match [cite: 29]</h3>
-                [cite_start]<p><em>Supervisor: Dr. Kundan Kandhway, IISER Bhopal [cite: 29]</em> | [cite_start]<em>(Nov 2024 - Mar 2025) [cite: 30]</em></p>
+        <main class="main-content">
+            <section id="about" class="content-section active">
+                <h2>About Me</h2>
+                <p>I am a Computer Science and Engineering student at the Indian Institute of Science Education and Research, Bhopal. My primary areas of interest include Deep Learning, Efficient AI for Edge Devices, Federated Learning, Statistics, and Game Theory. Below you will find a summary of my projects, skills, and academic background.</p>
+            </section>
+
+            <section id="projects" class="content-section">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>Localised learning in classification and Regression Tasks</h3>
+                    <p><em>Supervisor: Dr. Ayon Borthakur, IIT Guwahati | (May 2025 - ongoing)</em></p>
+                    <ul>
+                        <li>Implemented and analyzed memory consumption and accuracy of neural networks without traditional back-propagation.</li>
+                        <li>Developed a new strategy to train Vision Transformer (ViT) models from scratch by combining step-wise label denoising and block-wise local training.</li>
+                        <li>Extended this work for object detection, reducing memory usage compared to traditional backpropagation methods.</li>
+                    </ul>
+                </div>
+                <div class="project">
+                    <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
+                    <p><em>Supervisor: Dr. Kundan Kandhway, IISER Bhopal | (Nov 2024 - Mar 2025)</em></p>
+                    <ul>
+                        <li>Deployed and evaluated various ML models (Logistic Regression, XGBoost, NNs) to predict match outcomes.</li>
+                        <li>Achieved a mean test accuracy of 73% for 1st innings predictions and 84.6% for 2nd innings.</li>
+                        <li>Used SHAP values to determine the significance of features in model predictions.</li>
+                    </ul>
+                </div>
+                <div class="project">
+                    <h3>Vehicle detection and speed tracking</h3>
+                    <p><em>Supervisor: Dr. Akshay Agarwal, IISER Bhopal | (Sep 2024 - Nov 2024)</em></p>
+                    <ul>
+                        <li>Trained a YOLOv8 model for vehicle detection in video footage.</li>
+                        <li>Applied perspective transformation to accurately calculate vehicle speeds.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="skills" class="content-section">
+                <h2>Technical Skills & Awards</h2>
+                <h3>Skills</h3>
                 <ul>
-                    [cite_start]<li>Deployed and evaluated various ML models (Logistic Regression, XGBoost, NNs) to predict match outcomes[cite: 33].</li>
-                    [cite_start]<li>Achieved a mean test accuracy of 73% for 1st innings predictions and 84.6% for 2nd innings[cite: 35].</li>
-                    [cite_start]<li>Used SHAP values to determine the significance of features in model predictions[cite: 34].</li>
+                    <li><strong>Python:</strong> NumPy, Pandas, MatPlotlib, Seaborn, Scikit-learn, PyTorch, Flower Framework</li>
+                    <li><strong>C/C++:</strong> Linked list, Stacks, Queue, Heaps, Binary Search Tree</li>
+                    <li><strong>SQL:</strong> Basic queries, commands, and aggregate functions</li>
+                    <li><strong>Tools:</strong> MATLAB, AutoCAD</li>
                 </ul>
-            </div>
-
-            <div class="project">
-                [cite_start]<h3>Vehicle detection and speed tracking [cite: 38]</h3>
-                [cite_start]<p><em>Supervisor: Dr. Akshay Agarwal, IISER Bhopal [cite: 39]</em> | [cite_start]<em>(Sep 2024 - Nov 2024) [cite: 40]</em></p>
+                <h3>Awards & Achievements</h3>
                 <ul>
-                    [cite_start]<li>Trained a YOLOv8 model for vehicle detection in video footage[cite: 41].</li>
-                    [cite_start]<li>Applied perspective transformation to accurately calculate vehicle speeds[cite: 41].</li>
-                    [cite_start]<li>The output video displays the speed and type of vehicle and detects overspeeding[cite: 43].</li>
+                    <li>Reliance Foundation Scholarship (2022-2026)</li>
+                    <li>INSA-IASC-NASI Summer Research Fellow at IISc Bengaluru (2024)</li>
+                    <li>Teaching Assistant for "Data Science in Practice" (2025)</li>
                 </ul>
-            </div>
+            </section>
 
-        </section>
-
-        <section id="skills">
-            <h2>Technical Skills & Awards</h2>
-            
-            <h3>Skills</h3>
-            <ul>
-                [cite_start]<li><strong>Python:</strong> NumPy, Pandas, MatPlotlib, Seaborn, Scikit-learn, PyTorch, Flower Framework [cite: 51]</li>
-                [cite_start]<li><strong>C/C++:</strong> Linked list, Stacks, Queue, Heaps, Binary Search Tree [cite: 52]</li>
-                [cite_start]<li><strong>SQL:</strong> Basic queries, commands, and aggregate functions [cite: 53]</li>
-                [cite_start]<li><strong>Tools:</strong> MATLAB, AutoCAD [cite: 54, 55]</li>
-            </ul>
-
-            <h3>Awards & Achievements</h3>
-            <ul>
-                [cite_start]<li>Reliance Foundation Scholarship (2022-2026) [cite: 56]</li>
-                [cite_start]<li>INSA-IASC-NASI Summer Research Fellow at IISc Bengaluru (2024) [cite: 56]</li>
-                [cite_start]<li>Teaching Assistant for "Data Science in Practice" (2025) [cite: 56]</li>
-                [cite_start]<li>Coordinator: Economics Club, IISER Bhopal (2024-25) [cite: 56]</li>
-            </ul>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            [cite_start]<p><strong>BS Computer Science and Engineering, Minor Data Science</strong> (CPI: 8.76) [cite: 5]</p>
-            [cite_start]<p><em>Indian Institute of Science Education and Research, Bhopal [cite: 6]</em> | [cite_start]<em>(Dec 2022 - May 2026) [cite: 9]</em></p>
-            <br>
-            [cite_start]<p><strong>All India Senior School Certificate Examination</strong> (Score: 94.2%) [cite: 7]</p>
-            [cite_start]<p><em>Chinmaya Vidyalaya Bokaro Steel City, Jharkhand [cite: 8]</em></p>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Om Govind Jha</p>
-        </div>
-    </footer>
-
+            <section id="education" class="content-section">
+                <h2>Education</h2>
+                <p><strong>BS Computer Science and Engineering, Minor Data Science</strong> (CPI: 8.76)</p>
+                <p><em>Indian Institute of Science Education and Research, Bhopal | (Dec 2022 - May 2026)</em></p>
+                <br>
+                <p><strong>All India Senior School Certificate Examination</strong> (Score: 94.2%)</p>
+                <p><em>Chinmaya Vidyalaya Bokaro Steel City, Jharkhand</em></p>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
