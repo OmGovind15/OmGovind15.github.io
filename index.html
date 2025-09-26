@@ -133,7 +133,13 @@
                             <p>This research explores alternatives to traditional back-propagation in neural networks, aiming to reduce computational and memory overhead. We implemented and analyzed novel training strategies, such as those inspired by "NoProp," to understand their efficiency and accuracy. The project's goal is to make model training more scalable and accessible, particularly for complex models like Vision Transformers, by developing block-wise local training methods that are less resource-intensive yet maintain high performance.</p>
                         </div>
                         <div class="project-image">
-                            <img src="https://via.placeholder.com/300x200/444/fff?text=Project+1" alt="Project result image">
+                            <div class="gallery-thumbnail" data-modal-target="#localised-learning-modal">
+                                <img src="no_prop_result.png" alt="Localised Learning Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (3 Images)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
     
@@ -216,7 +222,18 @@
             </section>
         </main>
     </div>
-    
+        <div class="modal" id="localised-learning-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Localised Learning Project Results</h2>
+            <div class="modal-grid">
+                <img src="no_prop_result.png" alt="NoProp Result">
+                <img src="backprop_result.png" alt="Backprop Result">
+                <img src="memory_pascal.png" alt="Memory Pascal Chart">
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="cricket-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
@@ -291,6 +308,7 @@
     </script>
 </body>
 </html>
+
 
 
 
