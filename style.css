@@ -57,7 +57,8 @@ body {
 
 /* Collapsed Sidebar State */
 .sidebar.collapsed {
-    width: 60px;
+    width: 0;
+    padding: 40px 0;
 }
 .sidebar.collapsed .sidebar-header,
 .sidebar.collapsed .sidebar-subtitle,
@@ -75,7 +76,7 @@ body {
     transition: margin-left 0.3s ease-in-out;
 }
 .container.collapsed .main-content {
-    margin-left: 140px; /* Collapsed sidebar width + padding */
+    margin-left: 80px;
 }
 .content-section { display: none; }
 .content-section.active { display: block; }
@@ -103,3 +104,4 @@ body {
     border-radius: 6px;
 }
 .project h3 { margin-top: 0; }
+
