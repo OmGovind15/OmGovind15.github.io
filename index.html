@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om Govind Jha - Portfolio</title>
     <style>
+        /* --- CSS STYLES --- */
+        
         /* Basic Setup & Dark Theme */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -23,6 +25,7 @@
         }
         /* Main Layout Container */
         .container { display: flex; }
+        
         /* Left Sidebar Styling */
         .sidebar {
             width: 300px; padding: 40px; position: fixed;
@@ -40,7 +43,8 @@
         .nav a:hover, .nav a.active { color: #ffffff; }
         .links { margin-top: 30px; text-align: center; }
         .links a { margin: 0 10px; color: #007bff; }
-        /* Right Main Content Styling check */
+        
+        /* Right Main Content Styling */
         .main-content {
             display: block;
             flex: 1;
@@ -53,14 +57,14 @@
         .content-section.active { display: block; }
         .main-content h2 { font-size: 2.5rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 25px; }
         
-        /* FIXED: Projects Grid - Ensures vertical stacking */
+        /* Projects Grid */
         .projects-grid {
             display: flex;
             flex-direction: column;
             gap: 25px;
         }
         
-        /* FIXED: Project Layout - Each project card */
+        /* Project Layout */
         .project {
             display: flex;
             gap: 30px;
@@ -68,14 +72,22 @@
             background-color: #1e1e1e;
             padding: 20px;
             border-radius: 8px;
-            width: 100%; /* FIXED: Ensure full width */
-            box-sizing: border-box; /* FIXED: Include padding in width calculation */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .project-text { flex: 3; }
         .project-image { flex: 1; min-width: 200px; }
         .project-image img { width: 100%; border-radius: 6px; }
         .project h3 { margin-top: 0; }
+        
+        .project-text a {
+            color: #8ab4f8;
+            font-weight: bold;
+        }
+        .project-text a:hover {
+            text-decoration: underline;
+        }
         
         /* Gallery Thumbnail */
         .gallery-thumbnail { position: relative; cursor: pointer; border-radius: 6px; overflow: hidden; }
@@ -86,7 +98,7 @@
         .thumbnail-icon { font-size: 2.5rem; }
         .thumbnail-text { margin-top: 10px; font-weight: bold; }
         
-        /* Modal and Gallery Styles */
+        /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
         .modal.active { display: flex; }
         .modal-content { background-color: #1e1e1e; padding: 20px 40px; border: 1px solid #333; width: 85%; max-width: 1200px; border-radius: 8px; position: relative; }
@@ -94,14 +106,37 @@
         .modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .modal-grid img { width: 100%; border-radius: 6px; }
 
-        .project-text a {
-                color: #8ab4f8; /* A pleasant light blue */
-                font-weight: bold;
-            }
-            
-            .project-text a:hover {
-                text-decoration: underline;
-            }
+        /* --- READ MORE / COLLAPSE STYLES --- */
+        .text-content.collapsed {
+            max-height: 100px; /* Show only this much height initially */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s ease;
+        }
+        /* The fade-out effect */
+        .text-content.collapsed::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #1e1e1e);
+        }
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 8px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .read-more-btn:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -153,21 +188,20 @@
                         </div>
                     </div>
     
-                    <div class="project">
-                        <div class="project-text">
-                            <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
-                            <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We developed an adaptive system that deploys various machine learning models, including XGBoost and Neural Networks, switching between them over-by-over based on performance. By using SHAP (SHapley Additive exPlanations), we gained deep insights into which in-game features most significantly influence the match outcome. This work is useful for creating more dynamic and precise predictive tools for sports analytics.</p>
-                            <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
+                    <div class="project-text">
+                        <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
+                        
+                        <div class="text-content collapsed">
+                            <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We worked on making a robust set of features which can efficiently represent information of any particular over of a match.</p>
+                            
+                            <p>Using these set of features we explored various models namely- Logistic Regression, SVM, Random Forest, XGBoost, LDA, Naive Bayes and Neural Network. Since the nature of the game is driven very specifically by innings, we experimented with various settings like training an individual model for all overs in a particular innings, training models individually for each over, and also having the switching model strategy over-wise implemented.</p>
+                            
+                            <p>We observed that in the first innings, training a single model across all overs is much more effective as the winning chances are not sharply affected by any particular over event; it is mostly dependent on the past winning records of the team, which is also clearly visible in the SHAP plot for the 1st innings. However, in the second innings, the match dynamics change very quickly and can be captured better by training models for individual overs, essentially dividing a bigger problem into smaller sub-problems. We could also see the dynamic feature increasing effect in the 2nd innings. This work is useful for creating more specialized and precise predictive tools for sports analytics.</p>
                         </div>
-                        <div class="project-image">
-                            <div class="gallery-thumbnail" data-modal-target="#cricket-modal">
-                                <img src="cricket1.png" alt="Cricket project results" class="thumbnail-bg">
-                                <div class="thumbnail-overlay">
-                                    <span class="thumbnail-icon">🖼️</span>
-                                    <span class="thumbnail-text">View Gallery (6 Images)</span>
-                                </div>
-                            </div>
-                        </div>
+
+                        <button class="read-more-btn">Read more...</button>
+                        
+                        <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
                     </div>
     
                     <div class="project">
@@ -281,7 +315,8 @@
             </section>
         </main>
     </div>
-        <div class="modal" id="localised-learning-modal">
+
+    <div class="modal" id="localised-learning-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2>Localised Learning Project Results</h2>
@@ -308,9 +343,51 @@
         </div>
     </div>
 
+    <div class="modal" id="dr-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Dimensionality Reduction Results</h2>
+            <div class="modal-grid">
+                <img src="dr1.png" alt="Dimensionality Reduction Image 1">
+                <img src="dr2.png" alt="Dimensionality Reduction Image 2">
+                <img src="dr3.png" alt="Dimensionality Reduction Image 3">
+                <img src="dr4.png" alt="Dimensionality Reduction Image 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="sift-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>SIFT Project Results</h2>
+            <div class="modal-grid">
+                <img src="s_1.png" alt="SIFT Image 1">
+                <img src="s_2.png" alt="SIFT Image 2">
+                <img src="s_3.png" alt="SIFT Image 3">
+                <img src="s_4.png" alt="SIFT Image 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="viz-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Data Visualisation Project Results</h2>
+            <div class="modal-grid">
+                <img src="v1.png" alt="Visualisation Image 1">
+                <img src="v2.png" alt="Visualisation Image 2">
+                <img src="v3.png" alt="Visualisation Image 3">
+                <img src="v4.png" alt="Visualisation Image 4">
+                <img src="v5.png" alt="Visualisation Image 5">
+                <img src="v6.png" alt="Visualisation Image 6">
+                <img src="v7.png" alt="Visualisation Image 7">
+            </div>
+        </div>
+    </div>
+
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-    // --- Navigation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Logic ---
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
         
@@ -361,66 +438,23 @@
                     }
                 });
             });
+
+            // --- READ MORE LOGIC (NEW) ---
+            const readMoreBtns = document.querySelectorAll('.read-more-btn');
+
+            readMoreBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const textContent = btn.previousElementSibling;
+                    textContent.classList.toggle('collapsed');
+
+                    if (textContent.classList.contains('collapsed')) {
+                        btn.textContent = 'Read more...';
+                    } else {
+                        btn.textContent = 'Show less';
+                    }
+                });
+            });
         });
     </script>
-    <div class="modal" id="dr-modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2>Dimensionality Reduction Results</h2>
-        <div class="modal-grid">
-            <img src="dr1.png" alt="Dimensionality Reduction Image 1">
-            <img src="dr2.png" alt="Dimensionality Reduction Image 2">
-            <img src="dr3.png" alt="Dimensionality Reduction Image 3">
-            <img src="dr4.png" alt="Dimensionality Reduction Image 4">
-        </div>
-    </div>
-</div>
-    <div class="modal" id="sift-modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2>SIFT Project Results</h2>
-        <div class="modal-grid">
-            <img src="s_1.png" alt="SIFT Image 1">
-            <img src="s_2.png" alt="SIFT Image 2">
-            <img src="s_3.png" alt="SIFT Image 3">
-            <img src="s_4.png" alt="SIFT Image 4">
-        </div>
-    </div>
-</div>
-    <div class="modal" id="viz-modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2>Data Visualisation Project Results</h2>
-        <div class="modal-grid">
-            <img src="v1.png" alt="Visualisation Image 1">
-            <img src="v2.png" alt="Visualisation Image 2">
-            <img src="v3.png" alt="Visualisation Image 3">
-            <img src="v4.png" alt="Visualisation Image 4">
-            <img src="v5.png" alt="Visualisation Image 5">
-            <img src="v6.png" alt="Visualisation Image 6">
-            <img src="v7.png" alt="Visualisation Image 7">
-        </div>
-    </div>
-</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

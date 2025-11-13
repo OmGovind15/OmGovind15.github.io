@@ -50,4 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+
+    readMoreBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const textContent = btn.previousElementSibling;
+            textContent.classList.toggle('collapsed');
+
+            if (textContent.classList.contains('collapsed')) {
+                btn.textContent = 'Read more...';
+            } else {
+                btn.textContent = 'Show less';
+            }
+        });
+    });
 });

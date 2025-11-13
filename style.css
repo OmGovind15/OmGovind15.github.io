@@ -88,4 +88,41 @@ body {
 .modal-grid img { width: 100%; border-radius: 6px; }
 
 
+/* --- Read More / Collapse Logic --- */
 
+/* The container when it is closed */
+.text-content.collapsed {
+    max-height: 100px; /* Adjust this to show more/less lines initially */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+/* The "Fade Out" effect at the bottom */
+.text-content.collapsed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    /* This gradient must match your card background color (#1e1e1e) */
+    background: linear-gradient(to bottom, transparent, #1e1e1e);
+}
+
+/* The button styling */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #007bff; /* Matches your existing link color */
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}
