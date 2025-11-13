@@ -105,38 +105,6 @@
         .modal-close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; }
         .modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .modal-grid img { width: 100%; border-radius: 6px; }
-
-        /* --- READ MORE / COLLAPSE STYLES --- */
-        .text-content.collapsed {
-            max-height: 100px; /* Show only this much height initially */
-            overflow: hidden;
-            position: relative;
-            transition: max-height 0.3s ease;
-        }
-        /* The fade-out effect */
-        .text-content.collapsed::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: linear-gradient(to bottom, transparent, #1e1e1e);
-        }
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: #007bff;
-            cursor: pointer;
-            padding: 0;
-            margin-top: 8px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .read-more-btn:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -188,20 +156,27 @@
                         </div>
                     </div>
     
-                    <div class="project-text">
-                        <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
-                        
-                        <div class="text-content collapsed">
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
+                            
                             <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We worked on making a robust set of features which can efficiently represent information of any particular over of a match.</p>
                             
                             <p>Using these set of features we explored various models namely- Logistic Regression, SVM, Random Forest, XGBoost, LDA, Naive Bayes and Neural Network. Since the nature of the game is driven very specifically by innings, we experimented with various settings like training an individual model for all overs in a particular innings, training models individually for each over, and also having the switching model strategy over-wise implemented.</p>
                             
                             <p>We observed that in the first innings, training a single model across all overs is much more effective as the winning chances are not sharply affected by any particular over event; it is mostly dependent on the past winning records of the team, which is also clearly visible in the SHAP plot for the 1st innings. However, in the second innings, the match dynamics change very quickly and can be captured better by training models for individual overs, essentially dividing a bigger problem into smaller sub-problems. We could also see the dynamic feature increasing effect in the 2nd innings. This work is useful for creating more specialized and precise predictive tools for sports analytics.</p>
+                            
+                            <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
                         </div>
-
-                        <button class="read-more-btn">Read more...</button>
-                        
-                        <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
+                        <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#cricket-modal">
+                                <img src="cricket1.png" alt="Cricket project results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (6 Images)</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
     
                     <div class="project">
@@ -333,13 +308,10 @@
             <span class="modal-close">&times;</span>
             <h2>Adaptive Model Project Results</h2>
             <div class="modal-grid">
-                <img src="cricket1.png" alt="Test Accuracy 2nd Innings">
-                <img src="cricket2.png" alt="Test Accuracy 1st Innings">
-                <img src="cricket3.png" alt="Feature Selection 2nd Innings">
-                <img src="cricket4.png" alt="Feature Selection 1st Innings">
                 <img src="cricket5.png" alt="SHAP Heatmap 2nd Innings">
                 <img src="cricket6.png" alt="SHAP Heatmap 1st Innings">
-            </div>
+                
+                </div>
         </div>
     </div>
 
@@ -435,22 +407,6 @@
                 modal.addEventListener('click', e => {
                     if (e.target === modal) {
                         modal.classList.remove('active');
-                    }
-                });
-            });
-
-            // --- READ MORE LOGIC (NEW) ---
-            const readMoreBtns = document.querySelectorAll('.read-more-btn');
-
-            readMoreBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const textContent = btn.previousElementSibling;
-                    textContent.classList.toggle('collapsed');
-
-                    if (textContent.classList.contains('collapsed')) {
-                        btn.textContent = 'Read more...';
-                    } else {
-                        btn.textContent = 'Show less';
                     }
                 });
             });
