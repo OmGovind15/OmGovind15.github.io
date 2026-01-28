@@ -1,0 +1,128 @@
+/* Basic Setup & Dark Theme */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Sidebar Toggle Button */
+#sidebar-toggle {
+    position: fixed; top: 20px; left: 20px;
+    z-index: 1001; background: #2a2a2a; border: 1px solid #444;
+    color: #e0e0e0; font-size: 20px; cursor: pointer;
+    border-radius: 5px; width: 45px; height: 45px;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Main Layout Container */
+.container { display: flex; }
+
+/* Left Sidebar Styling */
+.sidebar {
+    width: 300px; padding: 40px; position: fixed;
+    top: 0; left: 0; height: 100vh;
+    background-color: #181818;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+.sidebar.collapsed { transform: translateX(-100%); }
+.sidebar-header { text-align: center; }
+.profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
+.sidebar-title { font-size: 2rem; margin: 0; }
+.sidebar-subtitle { font-size: 1.1rem; color: #a0a0a0; margin-bottom: 30px; }
+.nav a { display: block; padding: 10px 0; color: #a0a0e0; text-decoration: none; font-weight: bold; }
+.nav a:hover, .nav a.active { color: #ffffff; }
+.links { margin-top: 30px; text-align: center; }
+.links a { margin: 0 10px; color: #007bff; }
+
+/* Right Main Content Styling */
+.main-content {
+    display: block; /* Ensures sections stack vertically */
+    flex: 1;
+    padding: 40px;
+    margin-left: 380px;
+    transition: margin-left 0.3s ease-in-out;
+}
+.container.collapsed .main-content { margin-left: 80px; }
+.content-section { display: none; margin-bottom: 30px; }
+.content-section.active { display: block; }
+.main-content h2 { font-size: 2.5rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 25px; }
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+/* Project-specific Layout */
+.project {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    /* margin-bottom: 40px; */ /* REMOVE this line */
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 400px; /* ADD this line */
+}
+.project-text { flex: 3; }
+.project-image { flex: 1; min-width: 200px; }
+.project-image img { width: 100%; border-radius: 6px; }
+.project h3 { margin-top: 0; }
+
+/* Gallery Thumbnail */
+.gallery-thumbnail { position: relative; cursor: pointer; border-radius: 6px; overflow: hidden; }
+.thumbnail-bg { display: block; width: 100%; transition: transform 0.3s ease; }
+.thumbnail-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+.gallery-thumbnail:hover .thumbnail-overlay { opacity: 1; }
+.gallery-thumbnail:hover .thumbnail-bg { transform: scale(1.1); }
+.thumbnail-icon { font-size: 2.5rem; }
+.thumbnail-text { margin-top: 10px; font-weight: bold; }
+
+/* Modal and Gallery Styles */
+.modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
+.modal.active { display: flex; }
+.modal-content { background-color: #1e1e1e; padding: 20px 40px; border: 1px solid #333; width: 85%; max-width: 1200px; border-radius: 8px; position: relative; }
+.modal-close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; }
+.modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+.modal-grid img { width: 100%; border-radius: 6px; }
+
+
+/* --- Read More / Collapse Logic --- */
+
+/* The container when it is closed */
+.text-content.collapsed {
+    max-height: 100px; /* Adjust this to show more/less lines initially */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+/* The "Fade Out" effect at the bottom */
+.text-content.collapsed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    /* This gradient must match your card background color (#1e1e1e) */
+    background: linear-gradient(to bottom, transparent, #1e1e1e);
+}
+
+/* The button styling */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #007bff; /* Matches your existing link color */
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}

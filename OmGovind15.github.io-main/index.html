@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Govind Jha - Portfolio</title>
+    <style>
+        /* --- CSS STYLES --- */
+        
+        /* Basic Setup & Dark Theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        /* Sidebar Toggle Button */
+        #sidebar-toggle {
+            position: fixed; top: 20px; left: 20px;
+            z-index: 1001; background: #2a2a2a; border: 1px solid #444;
+            color: #e0e0e0; font-size: 20px; cursor: pointer;
+            border-radius: 5px; width: 45px; height: 45px;
+            transition: left 0.3s ease-in-out;
+        }
+        /* Main Layout Container */
+        .container { display: flex; }
+        
+        /* Left Sidebar Styling */
+        .sidebar {
+            width: 300px; padding: 40px; position: fixed;
+            top: 0; left: 0; height: 100vh;
+            background-color: #181818;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .sidebar.collapsed { transform: translateX(-100%); }
+        .sidebar-header { text-align: center; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
+        .sidebar-title { font-size: 2rem; margin: 0; }
+        .sidebar-subtitle { font-size: 1.1rem; color: #a0a0a0; margin-bottom: 30px; }
+        .nav a { display: block; padding: 10px 0; color: #a0a0e0; text-decoration: none; font-weight: bold; }
+        .nav a:hover, .nav a.active { color: #ffffff; }
+        .links { margin-top: 30px; text-align: center; }
+        .links a { margin: 0 10px; color: #007bff; }
+        
+        /* Right Main Content Styling */
+        .main-content {
+            display: block;
+            flex: 1;
+            padding: 40px;
+            margin-left: 380px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .container.collapsed .main-content { margin-left: 80px; }
+        .content-section { display: none; margin-bottom: 30px; }
+        .content-section.active { display: block; }
+        .main-content h2 { font-size: 2.5rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 25px; }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Project Layout */
+        .project {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .project-text { flex: 3; }
+        .project-image { flex: 1; min-width: 200px; }
+        .project-image img { width: 100%; border-radius: 6px; }
+        .project h3 { margin-top: 0; }
+        
+        .project-text a {
+            color: #8ab4f8;
+            font-weight: bold;
+        }
+        .project-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Gallery Thumbnail */
+        .gallery-thumbnail { position: relative; cursor: pointer; border-radius: 6px; overflow: hidden; }
+        .thumbnail-bg { display: block; width: 100%; transition: transform 0.3s ease; }
+        .thumbnail-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-thumbnail:hover .thumbnail-overlay { opacity: 1; }
+        .gallery-thumbnail:hover .thumbnail-bg { transform: scale(1.1); }
+        .thumbnail-icon { font-size: 2.5rem; }
+        .thumbnail-text { margin-top: 10px; font-weight: bold; }
+        
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background-color: #1e1e1e; padding: 20px 40px; border: 1px solid #333; width: 85%; max-width: 1200px; border-radius: 8px; position: relative; }
+        .modal-close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; }
+        .modal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .modal-grid img { width: 100%; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <button id="sidebar-toggle">☰</button>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="profile.jpg" alt="Om Govind Jha" class="profile-img">
+                <h1 class="sidebar-title">Om Govind Jha</h1>
+            </div>
+            <p class="sidebar-subtitle">BS in Computer Science & Engineering at IISER Bhopal</p>
+            
+            <nav class="nav">
+                <a href="#about" class="nav-item active">About</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#achievements" class="nav-item">Achievements & Responsibilities</a>
+                <a href="#education" class="nav-item">Education</a>
+            </nav>
+             <div class="links">
+                <a href="mailto:omgovinds15@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/OmGovind15" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/om-govind-jha-0a5422265/" target="_blank">LinkedIn</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section id="about" class="content-section active">
+                <h2>About Me</h2>
+                <p>I am a Computer Science and Engineering student at the Indian Institute of Science Education and Research, Bhopal. My primary areas of interest include Deep Learning, Efficient AI for Edge Devices, Federated Learning, Statistics, and Game Theory.</p>
+            </section>
+
+            <section id="projects" class="content-section">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Localised learning in classification and Regression Tasks</h3>
+                            <p>This research explores alternatives to traditional back-propagation in neural networks, aiming to reduce computational and memory overhead. We implemented and analyzed novel training strategies, such as those inspired by "NoProp," to understand their efficiency and accuracy. The project's goal is to make model training more scalable and accessible, particularly for complex models like Vision Transformers, by developing block-wise local training methods that are less resource-intensive yet maintain high performance.</p>
+                            <p><a href="https://github.com/OmGovind15/NO-PROP-PROJECT" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                        <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#localised-learning-modal">
+                                <img src="no_prop_result.png" alt="Localised Learning Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (3 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>CA-AFP: Cluster-Aware Adaptive Federated Pruning</h3>
+                            
+                            <p>This research proposes CA-AFP, a framework designed to optimize Federated Learning for resource-constrained edge devices by addressing both statistical and system heterogeneity. We combined the "Prune-and-Heal" strategy that allows models to self-heal by regrowing pruned weights during training along with the clustering which helps the model to personalise towards the client groups.</p>
+                            
+                            <p>Novel contribution includes a hybrid importance scoring mechanism that analyzes weight magnitude, intra-cluster coherence, and gradient consistency. Experimental results on the UCI dataset demonstrated ~96 % accuracy with approximately 70% sparsity, similar in communication efficiency with pruning baselines while giving better performance and fairness(standard deviation across client's accuracies). We also conducted ablation studies which indicated the significance of each component of our framework and the usefullness of scoring formula while pruning in different FL scenarios.</p>
+                            
+                            <p><a href="https://github.com/OmGovind15/fl" target="_blank">View Research Paper / Code</a></p>
+                        </div>
+                        <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#ca-afp-modal">
+                                <img src="ca_afp_workflow.png" alt="CA-AFP Workflow" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
+                            
+                            <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We worked on making a robust set of features which can efficiently represent information of any particular over of a match.</p>
+                            
+                            <p>Using these set of features we explored various models namely- Logistic Regression, SVM, Random Forest, XGBoost, LDA, Naive Bayes and Neural Network. Since the nature of the game is driven very specifically by innings, we experimented with various settings like training an individual model for all overs in a particular innings, training models individually for each over, and also having the switching model strategy over-wise implemented.</p>
+                            
+                            <p>We observed that in the first innings, training a single model across all overs is much more effective as the winning chances are not sharply affected by any particular over event; it is mostly dependent on the past winning records of the team, which is also clearly visible in the SHAP plot for the 1st innings. However, in the second innings, the match dynamics change very quickly and can be captured better by training models for individual overs, essentially dividing a bigger problem into smaller sub-problems. We could also see the dynamic feature increasing effect in the 2nd innings. This work is useful for creating more specialized and precise predictive tools for sports analytics.</p>
+                            
+                            <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                        <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#cricket-modal">
+                                <img src="cricket1.png" alt="Cricket project results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (6 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Vehicle detection and speed tracking</h3>
+                            <p>The purpose of this project was to build an automated system for monitoring traffic flow and enforcing speed limits. By training a YOLOv8 model, we achieved real-time vehicle detection and classification from video feeds. The system uses perspective transformation to accurately calculate the speed of each vehicle as it passes through a user-defined zone. This technology is highly valuable for intelligent traffic management systems, enhancing road safety and surveillance capabilities.</p>
+                            <p><a href="https://github.com/OmGovind15/Vehicle-Detection-and-Tracking_2024" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                        <div class="project-image">
+                            <img src="Picture1.gif" alt="Vehicle detection and speed tracking animation">
+                        </div>
+                    </div>
+    
+                    <div class="project">
+                         <div class="project-text">
+                            <h3>Dimensionality Reduction Analysis</h3>
+                            <p>High-dimensional data can be computationally expensive and difficult to interpret. This project provides a comparative analysis of key dimensionality reduction techniques like PCA, LDA, and t-SNE. We applied these algorithms to various datasets to evaluate their effectiveness in preserving important data structures while reducing complexity. The work serves as a practical guide for selecting the appropriate technique for feature extraction and data visualization in machine learning workflows.</p>
+                            <p><a href="https://github.com/OmGovind15/Dimensionality-Reduction_2024" target="_blank">View Code on GitHub</a></p>
+                         </div>
+                         <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#dr-modal">
+                                <img src="dr1.png" alt="Dimensionality Reduction Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                     <div class="project">
+                         <div class="project-text">
+                            <h3>Crater and Boulder Detection on Planetary Surfaces</h3>
+                            <p>This project automates the identification of geological features from planetary images, a critical task for rover navigation and scientific analysis. We implemented a computer vision pipeline using the Canny edge detector and Circular Hough Transform to accurately locate craters and boulders. This automated approach is far more efficient than manual analysis, enabling faster mapping of extraterrestrial surfaces and aiding in the selection of safe landing sites for future missions.</p>
+                            <p><a href="https://github.com/OmGovind15/crater_boulder_detection" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                         <div class="project-image">
+                            <img src="Screenshot 2025-09-27 001326.png" alt="Project result image">
+                        </div>
+                    </div>
+    
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Image Analysis with SIFT, BoW, and HOG</h3>
+                            <p>This project delves into classical feature-based image classification methods. We implemented the Scale-Invariant Feature Transform (SIFT) to extract robust keypoints from images, which were then clustered into a "Bag of Visual Words" (BoW). By creating histograms from these visual words, alongside Histogram of Oriented Gradients (HOG) features, we built a powerful model for classifying images. This work is fundamental to understanding the building blocks of many modern computer vision systems.</p>
+                            <p><a href="https://github.com/OmGovind15/Implementation-of-SIFT-Bag-of-Words-and-Histogram-of-Oriented-Gradients" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                         <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#sift-modal">
+                                <img src="s_1.png" alt="SIFT Project Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                   <div class="project">
+                        <div class="project-text">
+                            <h3>Data Visualisation: Energy, Occupancy, and Weather</h3>
+                            <p>The goal of this project was to uncover hidden patterns and relationships within complex, multi-source datasets. By merging and visualizing data on energy consumption, building occupancy, and corresponding weather conditions, we aimed to identify key factors influencing energy usage. This type of analysis is crucial for developing smarter, more efficient energy management systems and promoting sustainable building practices through data-driven insights.</p>
+                            <p><a href="https://github.com/OmGovind15/Data-Visualisation_Energy-Occupancy-and-Weather-Dataset_2023" target="_blank">View Code on GitHub</a></p>
+                        </div>
+                         <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#viz-modal">
+                                <img src="v1.png" alt="Data Visualisation Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (7 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>Optimal Design of Serosurveys during Pandemic</h3>
+                            <p>Under the supervision of Dr. Rajesh Sundaresan at IISc Bengaluru, this project focused on the optimal design of serosurveys for disease burden estimation. The work involved determining how to best distribute a budget for various tests to accurately estimate disease prevalence. Key concepts studied include Maximum Likelihood Estimators, the Fisher Information matrix, Convex Optimisation, and Game-Theoretic approaches.</p>
+                            <p><a href="https://drive.google.com/file/d/1sViV7VnIkgfHM8SPrcp_PBVWzvbbBljo/view" target="_blank">View Project Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements" class="content-section">
+                <h2>Achievements & Responsibilities</h2>
+                <ul>
+                    <li>Reliance Foundation Scholarship (2022-2026) </li>
+                    <li>Teaching Assistant for "Data Science in Practice" (2025) </li>
+                    <li>INSA-IASC-NASI Summer Research Fellow at IISc Bengaluru (2024) </li>
+                    <li>Coordinator: Economics Club, IISER Bhopal (2024-25) </li>
+                    <li>Qualified JEE-Advanced (2022-2023) </li>
+                    <li>Secured All India Rank 98 in IMU-CET examination (2022) </li>
+                    <li>Qualified NDA-149 examination (2021) </li>
+                </ul>
+            </section>
+            
+            <section id="education" class="content-section">
+                <h2>Education</h2>
+                <h3>BS Computer Science and Engineering, Minor Data Science (Dec 2022 - May 2026)</h3>
+                <p><strong>Indian Institute of Science Education and Research, Bhopal</strong> </p>
+                <p>CPI: 8.76 </p>
+                
+                <h3>All India Senior School Certificate Examination (2022)</h3>
+                <p><strong>Chinmaya Vidyalaya Bokaro Steel City, Jharkhand</strong></p>
+                <p>Score: 94.2% </p>
+            
+                <h3>All India Secondary School Examination (2020)</h3>
+                <p><strong>DAV Public School Jhanjharpur, Bihar</strong> </p>
+                <p>Score: 96.4% </p>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="localised-learning-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Localised Learning Project Results</h2>
+            <div class="modal-grid">
+                <img src="no_prop_result.png" alt="NoProp Result">
+                <img src="backprop_result.png" alt="Backprop Result">
+                <img src="memory_pascal.png" alt="Memory Pascal Chart">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cricket-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Adaptive Model Project Results</h2>
+            <div class="modal-grid">
+                <img src="cricket5.png" alt="SHAP Heatmap 2nd Innings">
+                <img src="cricket6.png" alt="SHAP Heatmap 1st Innings">
+                
+                </div>
+        </div>
+    </div>
+
+    <div class="modal" id="dr-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Dimensionality Reduction Results</h2>
+            <div class="modal-grid">
+                <img src="dr1.png" alt="Dimensionality Reduction Image 1">
+                <img src="dr2.png" alt="Dimensionality Reduction Image 2">
+                <img src="dr3.png" alt="Dimensionality Reduction Image 3">
+                <img src="dr4.png" alt="Dimensionality Reduction Image 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="sift-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>SIFT Project Results</h2>
+            <div class="modal-grid">
+                <img src="s_1.png" alt="SIFT Image 1">
+                <img src="s_2.png" alt="SIFT Image 2">
+                <img src="s_3.png" alt="SIFT Image 3">
+                <img src="s_4.png" alt="SIFT Image 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="viz-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Data Visualisation Project Results</h2>
+            <div class="modal-grid">
+                <img src="v1.png" alt="Visualisation Image 1">
+                <img src="v2.png" alt="Visualisation Image 2">
+                <img src="v3.png" alt="Visualisation Image 3">
+                <img src="v4.png" alt="Visualisation Image 4">
+                <img src="v5.png" alt="Visualisation Image 5">
+                <img src="v6.png" alt="Visualisation Image 6">
+                <img src="v7.png" alt="Visualisation Image 7">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Logic ---
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+        
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('href');
+                    document.querySelector(targetId).classList.add('active');
+                });
+            });
+        
+            // --- Sidebar Toggle Logic ---
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const container = document.querySelector('.container');
+        
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                container.classList.toggle('collapsed');
+            });
+        
+            // --- MODAL LOGIC ---
+            const openModalTriggers = document.querySelectorAll('[data-modal-target]');
+            const closeModalButtons = document.querySelectorAll('.modal-close');
+            const modals = document.querySelectorAll('.modal');
+        
+            openModalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const modal = document.querySelector(trigger.dataset.modalTarget);
+                    modal.classList.add('active');
+                });
+            });
+        
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    modal.classList.remove('active');
+                });
+            });
+        
+            modals.forEach(modal => {
+                modal.addEventListener('click', e => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <div class="modal" id="ca-afp-modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>CA-AFP Research Results</h2>
+        <div class="modal-grid">
+            <img src="ca_afp_workflow.png" alt="CA-AFP Framework Workflow">
+            <img src="ca_afp_accuracy.png" alt="Accuracy vs Communication Cost Analysis">
+            <img src="ca_afp_fairness.png" alt="Fairness Score Plot">
+            <img src="ca_afp_ablation.png" alt="Ablation Study: Rounds and Sparsity">
+        </div>
+    </div>
+</div>
+</body>
+</html>
