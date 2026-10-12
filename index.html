@@ -77,8 +77,8 @@
         }
         
         .project-text { flex: 3; }
-        .project-image { flex: 1; min-width: 200px; }
-        .project-image img { width: 100%; border-radius: 6px; }
+        .project-image { flex: 1; min-width: 200px; max-width: 280px; }
+        .project-image > img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
         .project h3 { margin-top: 0; }
         
         .project-text a {
@@ -90,13 +90,31 @@
         }
         
         /* Gallery Thumbnail */
-        .gallery-thumbnail { position: relative; cursor: pointer; border-radius: 6px; overflow: hidden; }
-        .thumbnail-bg { display: block; width: 100%; transition: transform 0.3s ease; }
+        .gallery-thumbnail {
+            position: relative;
+            cursor: pointer;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 180px;
+            width: 100%;
+            background-color: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumbnail-bg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.3s ease;
+        }
         .thumbnail-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
         .gallery-thumbnail:hover .thumbnail-overlay { opacity: 1; }
-        .gallery-thumbnail:hover .thumbnail-bg { transform: scale(1.1); }
-        .thumbnail-icon { font-size: 2.5rem; }
-        .thumbnail-text { margin-top: 10px; font-weight: bold; }
+        .gallery-thumbnail:hover .thumbnail-bg { transform: scale(1.08); }
+        .thumbnail-icon { font-size: 2.2rem; }
+        .thumbnail-text { margin-top: 8px; font-weight: bold; font-size: 0.9rem; }
         
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
@@ -124,8 +142,6 @@
                 <a href="#education" class="nav-item">Education</a>
             </nav>
              <div class="links">
-                <a href="resume_academic.pdf" target="_blank">Academic CV</a>
-                <a href="resume_industry.pdf" target="_blank">Resume</a>
                 <a href="mailto:omgovinds15@gmail.com" target="_blank">Email</a>
                 <a href="https://github.com/OmGovind15" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/om-govind-jha-0a5422265/" target="_blank">LinkedIn</a>
@@ -145,8 +161,8 @@
                         <div class="project-text">
                             <h3>Modeling Affective Distress from Video: A Modality-Aware Multi-Branch Learning Approach</h3>
                             <p style="color: #81c995; font-weight: 600; margin-bottom: 8px;">Published in Proceedings of the 28th ACM International Conference on Multimodal Interaction (ICMI '26)</p>
-                            <p>This research presents MAMBL, a modality-aware Multiple Instance Learning (MIL) framework for automated affective distress and anxiety assessment from clinical interview video feeds. We identify a fundamental temporal-structural mismatch across behavioral modalities: facial Action Units (AUs) represent sparse, high-frequency micro-expressions, whereas head pose and gaze dynamics exhibit continuous, autocorrelated momentum. To respect these distinct inductive biases, MAMBL introduces decoupled branch architectures—a 1D CNN for sparse AU events and a bidirectional LSTM for smooth rigid head and eye movements.</p>
-                            <p>The representations are unified via a gated temporal attention pooling mechanism and gradient-based spatial saliency. Evaluated on a clinical Trier Social Stress Test (TSST) dataset, MAMBL achieves 71.04% classification accuracy and competitive performance across StressID, UBFC-Phys, and AVEC 2017 benchmarks.</p>
+                            <p>Automated detection of mental health conditions such as stress and Social Anxiety Disorder (SAD) from clinical interview video feeds presents severe challenges because affective distress manifests as both rapid, localized micro-expressions and sustained behavioral trends. Whereas conventional methods process heterogeneous behavioral cues through a single sequential encoder—leading to signal distortion—we propose a Multi-Branch Modality-Aware Multiple Instance Learning (MIL) framework that explicitly disentangles behavioral signals based on their temporal dynamics.</p>
+                            <p>High-variance, sparse facial Action Units (extracted via OpenFace) are routed to a 1D CNN branch to capture localized micro-events, while continuous, autocorrelated postural landmarks and gaze vectors (extracted via MediaPipe) are routed to a Bidirectional LSTM branch to capture gradual behavioral trajectories. Window-level representations are unified via gated attention MIL into interpretable participant-level predictions. Trained with joint Binary Cross-Entropy and Supervised Contrastive losses, the architecture features gradient-based spatial saliency mapping to 2D video heatmaps and achieves 71.04% accuracy on a clinical Trier Social Stress Test (TSST) interview benchmark, with competitive cross-dataset generalization across StressID, UBFC-Phys, and AVEC 2017.</p>
                             <p><a href="https://dl.acm.org/doi/10.1145/3776574.3831196" target="_blank">ACM Digital Library</a> | <a href="https://dl.acm.org/doi/pdf/10.1145/3776574.3831196" target="_blank">PDF Paper</a> | <a href="https://github.com/OmGovind15/MAMBL" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
@@ -163,13 +179,13 @@
                         <div class="project-text">
                             <h3>Teacher-Guided Discriminative Flow Matching for Latent Representation Learning</h3>
                             <p style="color: #81c995; font-weight: 600; margin-bottom: 8px;">Accepted at Northern Lights Deep Learning Conference (NLDL 2027)</p>
-                            <p>This work introduces Discriminative Flow Matching (DFM) for robust latent representation learning. We train a time-dependent neural vector field to transport latent representations along straight-line probability paths between a source noise prior and class-conditional target representations supervised by a momentum-updated exponential moving average (EMA) teacher network.</p>
-                            <p>By incorporating a learned scalar gating parameter, DFM dynamically balances continuous vector field alignment with discriminative supervision. Empirical evaluation demonstrates superior classification accuracy, well-separated latent cluster geometries, and substantially lower Expected Calibration Error (ECE) compared to standard cross-entropy and self-supervised contrastive baselines.</p>
-                            <p><em>Preprint / Camera-ready available upon request (proceedings to appear).</em></p>
+                            <p>This research introduces DFM (Discriminative Flow Matching), investigating whether a teacher-guided latent vector field can serve as an effective feature-space regularizer for discriminative visual representation learning. Rather than transporting features from an arbitrary noise prior or matching generic class prototypes, DFM pairs a strongly augmented student view with a weakly augmented view from an Exponential Moving Average (EMA) teacher network, modeling sample-specific latent displacement along linear probability paths.</p>
+                            <p>We train a conditional neural vector field conditioned on the current state, original student state, and interpolation time to predict the velocity required to traverse the displacement path (stabilized with target velocity norm clipping). A sample-dependent learned scalar gate dynamically scales the residual velocity update, while a joint training objective optimizes classification on both unrefined student and refined representations, flow-matching regression, and stop-gradient teacher endpoint transport. On CIFAR-100, DFM elevates baseline top-1 accuracy from 68.23% to 69.26% on the unrefined backbone and 69.38% with one-step refinement, while transferring effectively to pretrained Tiny-ImageNet (top-1 from 63.04% to 63.50%, top-5 from 84.98% to 85.99%) and demonstrating significantly tighter class-centroid clustering, lower Expected Calibration Error (ECE), and superior corruption robustness (CIFAR-100-C).</p>
+                            <p><em>Camera-ready / preprint available upon request (proceedings to appear).</em></p>
                         </div>
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#dfm-modal">
-                                <img src="dfm_tsne.png" alt="DFM Latent Representation Results" class="thumbnail-bg">
+                                <img src="dfm_fig2_tsne.png" alt="DFM Latent Representation Results" class="thumbnail-bg">
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (4 Images)</span>
@@ -181,16 +197,16 @@
                         <div class="project-text">
                             <h3>CA-AFP: Cluster-Aware Adaptive Federated Pruning for Heterogeneous FL</h3>
                             <p style="color: #8ab4f8; font-weight: 600; margin-bottom: 8px;">Under Submission at ACM IKDD CoDS-COMAD 2026</p>
-                            <p>CA-AFP is a clustered dynamic sparse federated learning framework engineered for resource-constrained edge computing environments experiencing severe statistical (non-IID) and system heterogeneity. We integrate a dynamic "Prune-and-Heal" parameter exploration with trajectory-cosine client clustering, enabling client groups with similar data distributions to collaboratively discover personalized sparse network topologies.</p>
-                            <p>Our hybrid importance scoring mechanism evaluates weight magnitude, intra-cluster coherence, and gradient consistency during iterative pruning and regrowth. Evaluated across CIFAR-10, CIFAR-100, FEMNIST, and WISDM datasets, CA-AFP maintains robust model performance at up to 70% parameter sparsity, significantly reducing communication overhead while improving fairness (minimizing variance in client accuracy).</p>
+                            <p>Federated learning across real-world edge devices must accommodate non-IID client data distributions while minimizing communication and compute bottlenecks. Existing sparse FL methods impose a uniform, shared network topology across all participants, constraining heterogeneous client groups from adapting their layer-wise connectivity to their specific data distributions. We propose CA-AFP (Cluster-Aware Adaptive Federated Pruning), a clustered dynamic sparse FL framework that enables client groups to independently evolve specialized sparse network topologies under a common resource budget.</p>
+                            <p>CA-AFP first clusters participating clients based on the cosine similarity of their accumulated optimization trajectories and subsequently conducts adaptive magnitude-based pruning and gradient-guided parameter regrowth independently within each cluster. We empirically analyze the structural evolution of sparse topologies across training—demonstrating that client clusters develop specialized layer-wise sparse connectivity patterns (particularly in later network layers) rather than merely diverging in weight values. Evaluated across four heterogeneous FL benchmarks (CIFAR-10, CIFAR-100, FEMNIST, and WISDM) under a matched 70% parameter sparsity budget, CA-AFP achieves the highest accuracy among sparse baselines on CIFAR-10, FEMNIST, and CIFAR-100, significantly accelerates early-stage convergence, and provides a Pareto-optimal accuracy-to-communication trade-off.</p>
                             <p><a href="https://github.com/OmGovind15/fl" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#ca-afp-modal">
-                                <img src="ca_afp_workflow.png" alt="CA-AFP Workflow" class="thumbnail-bg">
+                                <img src="ca_afp_fig1_tradeoff.png" alt="CA-AFP Accuracy vs Communication Trade-Off" class="thumbnail-bg">
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
-                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                    <span class="thumbnail-text">View Gallery (7 Images)</span>
                                 </div>
                             </div>
                         </div>
@@ -199,16 +215,16 @@
                         <div class="project-text">
                             <h3>Predictive Modeling in ODI Cricket: Training Strategy, Feature Engineering, & Explainability</h3>
                             <p style="color: #8ab4f8; font-weight: 600; margin-bottom: 8px;">Under Review (Revision Stage) at International Journal of Sports Science & Coaching (SAGE Publications)</p>
-                            <p>This research develops a comprehensive machine learning framework for predicting match outcomes in One Day International (ODI) cricket across 1,394 historical matches (2002–2023). To address realistic operational deployment and eliminate temporal data leakage, we implemented a rigorous chronological expanding-window cross-validation strategy.</p>
-                            <p>We engineered granular ball-by-ball and over-by-over situational features and benchmarked multiple models including Logistic Regression, SVM, Random Forest, XGBoost, and Deep Neural Networks. Our findings establish that a Unified Inning Model performs best in the first innings where win probabilities evolve smoothly with overall run-rate and historical team form. Conversely, the second innings is governed by volatile chasing dynamics, where our proposed adaptive Over-Wise Model Switching strategy achieves an outstanding 84.6% prediction accuracy. Game-theoretic SHAP interpretability analysis quantitatively illustrates how feature importance transitions across key phases of the game.</p>
+                            <p>Predicting the outcome of One Day International (ODI) cricket matches is exceptionally challenging due to high variance and innings-dependent game dynamics. This paper introduces a comprehensive machine learning framework trained on 1,394 international ODI matches (2002–2024). To eliminate temporal data leakage and ensure realistic real-world deployment, we formulate a strict chronological expanding-window training and evaluation pipeline.</p>
+                            <p>We engineer inning-specific static features (team relative strength metrics, venue characteristics, toss decision) alongside granular dynamic features (cumulative runs, required run-rate gap, wickets in hand, and pressure indices). We systematically compare two distinct modeling paradigms across Logistic Regression, SVM, Random Forest, XGBoost, Naive Bayes, and Neural Networks: a 'Unified Inning Model' trained across all overs, versus an 'Over-Wise Model' trained independently for each over. Our analysis proves that feature effectiveness is maximized by a hybrid strategy: the Unified Inning Model is decisively superior for the 1st innings where match outcome correlates steadily with cumulative run rate and team priors; conversely, the Over-Wise Model Switching strategy is decisively superior for the 2nd innings, capturing non-linear chasing volatility and achieving an outstanding 84.6% prediction accuracy. Game-theoretic SHAP interpretability analysis quantitatively decodes the dynamic transition of feature attribution across match phases.</p>
                             <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#cricket-modal">
-                                <img src="cricket1.png" alt="Cricket project results" class="thumbnail-bg">
+                                <img src="cricket_fig6_overwise_i2.png" alt="Cricket 2nd Innings Over-Wise Test Accuracies" class="thumbnail-bg">
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
-                                    <span class="thumbnail-text">View Gallery (6 Images)</span>
+                                    <span class="thumbnail-text">View Gallery (8 Images)</span>
                                 </div>
                             </div>
                         </div>
@@ -329,11 +345,20 @@
     <div class="modal" id="mambl-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>MAMBL: Modality-Aware Multi-Branch Learning Results</h2>
+            <h2>MAMBL: Modality-Aware Multi-Branch Learning Results (ACM ICMI '26)</h2>
             <div class="modal-grid">
-                <img src="icmi26-100-fig1.jpg" alt="MAMBL Multi-Branch Architecture Overview">
-                <img src="icmi26-100-fig2.jpg" alt="Modality Sparsity and Autocorrelation Analysis">
-                <img src="icmi26-100-fig3.jpg" alt="Temporal Attention Weights and Saliency Maps">
+                <div>
+                    <img src="icmi26-100-fig1.jpg" alt="MAMBL Multi-Branch Architecture Overview">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 1: Overall framework of the proposed model architecture.</p>
+                </div>
+                <div>
+                    <img src="icmi26-100-fig2.jpg" alt="Temporal Attention Distribution across Participants">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 2: Temporal attention distribution across participants.</p>
+                </div>
+                <div>
+                    <img src="icmi26-100-fig3.jpg" alt="Gradient-Based Video Saliency Heatmap Visualization">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 3: Video Saliency Visualization (gradient-based saliency overlaid on video frames).</p>
+                </div>
             </div>
         </div>
     </div>
@@ -341,12 +366,61 @@
     <div class="modal" id="dfm-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Teacher-Guided Discriminative Flow Matching (DFM) Results</h2>
+            <h2>Teacher-Guided Discriminative Flow Matching (DFM) Results (NLDL 2027)</h2>
             <div class="modal-grid">
-                <img src="dfm_tsne.png" alt="t-SNE Latent Feature Representations">
-                <img src="dfm_reliability.png" alt="Reliability Diagrams and Expected Calibration Error">
-                <img src="dfm_vector_paths.png" alt="Learned Flow Matching Vector Field Paths">
-                <img src="dfm_gate.png" alt="Learned Scalar Gating Parameter Dynamics">
+                <div>
+                    <img src="dfm_fig2_tsne.png" alt="Qualitative Latent-Space Analysis (t-SNE Baseline vs DFM)">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 2: Qualitative latent-space t-SNE analysis on CIFAR-100 (Unrefined baseline vs DFM).</p>
+                </div>
+                <div>
+                    <img src="dfm_fig1_reliability.png" alt="Reliability Diagrams & Calibration on CIFAR-100">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 1: Reliability diagram comparing baseline and DFM calibration on CIFAR-100.</p>
+                </div>
+                <div>
+                    <img src="dfm_fig3_centroid_distance.png" alt="Distribution of L2 Distances to Class Centroids">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 3: Distribution of L2 distances to training-set class centroids showing tighter intra-class clustering.</p>
+                </div>
+                <div>
+                    <img src="dfm_fig4_scalar_gate.png" alt="Distribution of Learned Scalar Gate">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 4: Distribution of learned scalar gate &alpha; for correct vs incorrect predictions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="ca-afp-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>CA-AFP Research Results (CoDS-COMAD 2026 Submission)</h2>
+            <div class="modal-grid">
+                <div>
+                    <img src="ca_afp_fig1_tradeoff.png" alt="Accuracy–Communication Trade-off Across 4 Benchmarks">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 1: Accuracy–communication trade-off across CIFAR-10, CIFAR-100, FEMNIST, and WISDM.</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig2_convergence.png" alt="Convergence Behavior of CA-AFP Clustered vs Global">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 2: Convergence behavior of CA-AFP with clustered sparse training (K=3) vs global (K=1).</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig3_temporal_jaccard.png" alt="Temporal Self-Jaccard Similarity">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 3: Temporal self-Jaccard similarity between consecutive pruning steps.</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig4_cross_cluster_jaccard.png" alt="Cross-Cluster Jaccard Similarity">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 4: Average cross-cluster Jaccard similarity throughout training indicating architectural divergence.</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig5_diversity_vs_acc.png" alt="Cluster Diversity vs Global Accuracy">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 5: Relationship between cluster diversity (1-J) and global test accuracy.</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig6_layerwise_diversity.png" alt="Evolution of Layer-Wise Architectural Diversity">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 6: Evolution of layer-wise architectural diversity showing specialized deeper layers.</p>
+                </div>
+                <div>
+                    <img src="ca_afp_fig7_topology_evolution.png" alt="Evolution of Sparse Topology Changes">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 7: Evolution of sparse topology changes throughout optimization.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -354,14 +428,40 @@
     <div class="modal" id="cricket-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Adaptive Model Cricket ODI Prediction Results</h2>
+            <h2>Adaptive Model Cricket ODI Prediction Results (SAGE Manuscript)</h2>
             <div class="modal-grid">
-                <img src="cricket1.png" alt="Innings Progression Accuracy Analysis">
-                <img src="cricket2.png" alt="Over-Wise Model Comparison">
-                <img src="cricket3.png" alt="Cumulative Match Metrics">
-                <img src="cricket4.png" alt="Model Calibration and Switching ROC">
-                <img src="cricket5.png" alt="SHAP Summary Plot - 2nd Innings Over Dynamics">
-                <img src="cricket6.png" alt="SHAP Summary Plot - 1st Innings Prior Importance">
+                <div>
+                    <img src="cricket_fig5_overwise_i1.png" alt="Over-Wise Test Accuracies in First Innings">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 5: Over-wise test accuracies for all models in first innings (I1).</p>
+                </div>
+                <div>
+                    <img src="cricket_fig6_overwise_i2.png" alt="Over-Wise Test Accuracies in Second Innings">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 6: Over-wise test accuracies in second innings (I2) showing model switching spike to 84.6%.</p>
+                </div>
+                <div>
+                    <img src="cricket_fig8_win_trajectories.png" alt="Neural Network Win-Probability Trajectories">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 8: Neural network win-probability trajectories for two representative matches (close finish vs dominant chase).</p>
+                </div>
+                <div>
+                    <img src="cricket_fig7_calibration.png" alt="Reliability Calibration Curves">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 7: Reliability diagrams and probabilistic calibration curves for Neural Network.</p>
+                </div>
+                <div>
+                    <img src="cricket_fig3_scenarios_i1.png" alt="First Innings Training Scenarios Comparison">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 3: Test accuracy comparison across training scenarios for first innings.</p>
+                </div>
+                <div>
+                    <img src="cricket_fig4_scenarios_i2.png" alt="Second Innings Training Scenarios Comparison">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 4: Test accuracy comparison across training scenarios for second innings.</p>
+                </div>
+                <div>
+                    <img src="cricket_fig15_shap_i1.png" alt="First Innings Neural Network SHAP Feature Importance">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 15: First innings neural network SHAP feature importance across overs.</p>
+                </div>
+                <div>
+                    <img src="cricket_fig16_shap_i2.png" alt="Second Innings Neural Network SHAP Feature Importance">
+                    <p style="text-align: center; color: #aaa; margin-top: 8px; font-size: 0.9rem;">Figure 16: Second innings neural network SHAP feature importance across overs.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -463,17 +563,5 @@
             });
         });
     </script>
-    <div class="modal" id="ca-afp-modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2>CA-AFP Research Results</h2>
-        <div class="modal-grid">
-            <img src="ca_afp_workflow.png" alt="CA-AFP Framework Workflow">
-            <img src="ca_afp_accuracy.png" alt="Accuracy vs Communication Cost Analysis">
-            <img src="ca_afp_fairness.png" alt="Fairness Score Plot">
-            <img src="ca_afp_ablation.png" alt="Ablation Study: Rounds and Sparsity">
-        </div>
-    </div>
-</div>
 </body>
 </html>
