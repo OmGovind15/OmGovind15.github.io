@@ -101,6 +101,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid #2a2a2a;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .gallery-thumbnail:hover {
+            border-color: #8ab4f8;
+            box-shadow: 0 4px 14px rgba(138, 180, 248, 0.25);
         }
         .thumbnail-bg {
             display: block;
@@ -110,11 +116,76 @@
             object-position: top center;
             transition: transform 0.3s ease;
         }
-        .thumbnail-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
-        .gallery-thumbnail:hover .thumbnail-overlay { opacity: 1; }
-        .gallery-thumbnail:hover .thumbnail-bg { transform: scale(1.08); }
+        .gallery-thumbnail:hover .thumbnail-bg {
+            transform: scale(1.05);
+        }
+
+        /* Persistent Pill Badge on Thumbnail (Visible on both laptop and mobile) */
+        .gallery-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 2;
+        }
+        .gallery-thumbnail:hover .gallery-badge {
+            background: rgba(26, 115, 232, 0.95);
+            border-color: #8ab4f8;
+        }
+
+        /* Desktop Hover Full Overlay */
+        .thumbnail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            z-index: 3;
+        }
+        .gallery-thumbnail:hover .thumbnail-overlay {
+            opacity: 1;
+        }
         .thumbnail-icon { font-size: 2.2rem; }
-        .thumbnail-text { margin-top: 8px; font-weight: bold; font-size: 0.9rem; }
+        .thumbnail-text { margin-top: 6px; font-weight: bold; font-size: 0.88rem; color: #e8eaed; }
+        .thumbnail-subtext { font-size: 0.75rem; color: #8ab4f8; margin-top: 2px; }
+
+        /* Helpful hint below thumbnail (Visible on both laptop and mobile) */
+        .gallery-hint {
+            display: block;
+            margin-top: 7px;
+            text-align: center;
+            font-size: 0.76rem;
+            color: #8ab4f8;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+        .gallery-hint:hover {
+            color: #d2e3fc;
+            text-decoration: underline;
+        }
         
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
@@ -168,10 +239,18 @@
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#mambl-modal">
                                 <img src="icmi26-100-fig1.jpg" alt="MAMBL Framework Overview" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 3 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (3 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#mambl-modal">
+                                <span>🔍 Click / tap image to view all 3 images</span>
                             </div>
                         </div>
                     </div>
@@ -186,10 +265,18 @@
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#dfm-modal">
                                 <img src="dfm_fig2_tsne.png" alt="DFM Latent Representation Results" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 4 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#dfm-modal">
+                                <span>🔍 Click / tap image to view all 4 images</span>
                             </div>
                         </div>
                     </div>
@@ -199,15 +286,22 @@
                             <p style="color: #8ab4f8; font-weight: 600; margin-bottom: 8px;">Under Submission at ACM IKDD CoDS-COMAD 2026</p>
                             <p>Federated learning across real-world edge devices must accommodate non-IID client data distributions while minimizing communication and compute bottlenecks. Existing sparse FL methods impose a uniform, shared network topology across all participants, constraining heterogeneous client groups from adapting their layer-wise connectivity to their specific data distributions. We propose CA-AFP (Cluster-Aware Adaptive Federated Pruning), a clustered dynamic sparse FL framework that enables client groups to independently evolve specialized sparse network topologies under a common resource budget.</p>
                             <p>CA-AFP first clusters participating clients based on the cosine similarity of their accumulated optimization trajectories and subsequently conducts adaptive magnitude-based pruning and gradient-guided parameter regrowth independently within each cluster. We empirically analyze the structural evolution of sparse topologies across training—demonstrating that client clusters develop specialized layer-wise sparse connectivity patterns (particularly in later network layers) rather than merely diverging in weight values. Evaluated across four heterogeneous FL benchmarks (CIFAR-10, CIFAR-100, FEMNIST, and WISDM) under a matched 70% parameter sparsity budget, CA-AFP achieves the highest accuracy among sparse baselines on CIFAR-10, FEMNIST, and CIFAR-100, significantly accelerates early-stage convergence, and provides a Pareto-optimal accuracy-to-communication trade-off.</p>
-                            <p><a href="https://github.com/OmGovind15/fl" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#ca-afp-modal">
                                 <img src="ca_afp_fig1_tradeoff.png" alt="CA-AFP Accuracy vs Communication Trade-Off" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 7 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (7 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#ca-afp-modal">
+                                <span>🔍 Click / tap image to view all 7 images</span>
                             </div>
                         </div>
                     </div>
@@ -222,10 +316,18 @@
                         <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#cricket-modal">
                                 <img src="cricket_fig6_overwise_i2.png" alt="Cricket 2nd Innings Over-Wise Test Accuracies" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 8 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (8 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#cricket-modal">
+                                <span>🔍 Click / tap image to view all 8 images</span>
                             </div>
                         </div>
                     </div>
@@ -250,10 +352,18 @@
                          <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#dr-modal">
                                 <img src="dr1.png" alt="Dimensionality Reduction Results" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 4 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#dr-modal">
+                                <span>🔍 Click / tap image to view all 4 images</span>
                             </div>
                         </div>
                     </div>
@@ -278,10 +388,18 @@
                          <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#sift-modal">
                                 <img src="s_1.png" alt="SIFT Project Results" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 4 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#sift-modal">
+                                <span>🔍 Click / tap image to view all 4 images</span>
                             </div>
                         </div>
                     </div>
@@ -295,10 +413,18 @@
                          <div class="project-image">
                             <div class="gallery-thumbnail" data-modal-target="#viz-modal">
                                 <img src="v1.png" alt="Data Visualisation Results" class="thumbnail-bg">
+                                <div class="gallery-badge">
+                                    <span>🖼️ 7 Images</span>
+                                    <span style="font-size: 0.85rem;">⤢</span>
+                                </div>
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (7 Images)</span>
+                                    <span class="thumbnail-subtext">Click to expand</span>
                                 </div>
+                            </div>
+                            <div class="gallery-hint" data-modal-target="#viz-modal">
+                                <span>🔍 Click / tap image to view all 7 images</span>
                             </div>
                         </div>
                     </div>
