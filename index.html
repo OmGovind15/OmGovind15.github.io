@@ -124,6 +124,8 @@
                 <a href="#education" class="nav-item">Education</a>
             </nav>
              <div class="links">
+                <a href="resume_academic.pdf" target="_blank">Academic CV</a>
+                <a href="resume_industry.pdf" target="_blank">Resume</a>
                 <a href="mailto:omgovinds15@gmail.com" target="_blank">Email</a>
                 <a href="https://github.com/OmGovind15" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/om-govind-jha-0a5422265/" target="_blank">LinkedIn</a>
@@ -141,13 +143,15 @@
                 <div class="projects-grid">
                     <div class="project">
                         <div class="project-text">
-                            <h3>Localised learning in classification and Regression Tasks</h3>
-                            <p>This research explores alternatives to traditional back-propagation in neural networks, aiming to reduce computational and memory overhead. We implemented and analyzed novel training strategies, such as those inspired by "NoProp," to understand their efficiency and accuracy. The project's goal is to make model training more scalable and accessible, particularly for complex models like Vision Transformers, by developing block-wise local training methods that are less resource-intensive yet maintain high performance.</p>
-                            <p><a href="https://github.com/OmGovind15/NO-PROP-PROJECT" target="_blank">View Code on GitHub</a></p>
+                            <h3>Modeling Affective Distress from Video: A Modality-Aware Multi-Branch Learning Approach</h3>
+                            <p style="color: #81c995; font-weight: 600; margin-bottom: 8px;">Published in Proceedings of the 28th ACM International Conference on Multimodal Interaction (ICMI '26)</p>
+                            <p>This research presents MAMBL, a modality-aware Multiple Instance Learning (MIL) framework for automated affective distress and anxiety assessment from clinical interview video feeds. We identify a fundamental temporal-structural mismatch across behavioral modalities: facial Action Units (AUs) represent sparse, high-frequency micro-expressions, whereas head pose and gaze dynamics exhibit continuous, autocorrelated momentum. To respect these distinct inductive biases, MAMBL introduces decoupled branch architectures—a 1D CNN for sparse AU events and a bidirectional LSTM for smooth rigid head and eye movements.</p>
+                            <p>The representations are unified via a gated temporal attention pooling mechanism and gradient-based spatial saliency. Evaluated on a clinical Trier Social Stress Test (TSST) dataset, MAMBL achieves 71.04% classification accuracy and competitive performance across StressID, UBFC-Phys, and AVEC 2017 benchmarks.</p>
+                            <p><a href="https://dl.acm.org/doi/10.1145/3776574.3831196" target="_blank">ACM Digital Library</a> | <a href="https://dl.acm.org/doi/pdf/10.1145/3776574.3831196" target="_blank">PDF Paper</a> | <a href="https://github.com/OmGovind15/MAMBL" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
-                            <div class="gallery-thumbnail" data-modal-target="#localised-learning-modal">
-                                <img src="no_prop_result.png" alt="Localised Learning Results" class="thumbnail-bg">
+                            <div class="gallery-thumbnail" data-modal-target="#mambl-modal">
+                                <img src="icmi26-100-fig1.jpg" alt="MAMBL Framework Overview" class="thumbnail-bg">
                                 <div class="thumbnail-overlay">
                                     <span class="thumbnail-icon">🖼️</span>
                                     <span class="thumbnail-text">View Gallery (3 Images)</span>
@@ -157,12 +161,28 @@
                     </div>
                     <div class="project">
                         <div class="project-text">
-                            <h3>CA-AFP: Cluster-Aware Adaptive Federated Pruning</h3>
-                            
-                            <p>This research proposes CA-AFP, a framework designed to optimize Federated Learning for resource-constrained edge devices by addressing both statistical and system heterogeneity. We combined the "Prune-and-Heal" strategy that allows models to self-heal by regrowing pruned weights during training along with the clustering which helps the model to personalise towards the client groups.</p>
-                            
-                            <p>Novel contribution includes a hybrid importance scoring mechanism that analyzes weight magnitude, intra-cluster coherence, and gradient consistency. Experimental results on the UCI dataset demonstrated ~96 % accuracy with approximately 70% sparsity, similar in communication efficiency with pruning baselines while giving better performance and fairness(standard deviation across client's accuracies). We also conducted ablation studies which indicated the significance of each component of our framework and the usefullness of scoring formula while pruning in different FL scenarios.</p>
-                            
+                            <h3>Teacher-Guided Discriminative Flow Matching for Latent Representation Learning</h3>
+                            <p style="color: #81c995; font-weight: 600; margin-bottom: 8px;">Accepted at Northern Lights Deep Learning Conference (NLDL 2027)</p>
+                            <p>This work introduces Discriminative Flow Matching (DFM) for robust latent representation learning. We train a time-dependent neural vector field to transport latent representations along straight-line probability paths between a source noise prior and class-conditional target representations supervised by a momentum-updated exponential moving average (EMA) teacher network.</p>
+                            <p>By incorporating a learned scalar gating parameter, DFM dynamically balances continuous vector field alignment with discriminative supervision. Empirical evaluation demonstrates superior classification accuracy, well-separated latent cluster geometries, and substantially lower Expected Calibration Error (ECE) compared to standard cross-entropy and self-supervised contrastive baselines.</p>
+                            <p><em>Preprint / Camera-ready available upon request (proceedings to appear).</em></p>
+                        </div>
+                        <div class="project-image">
+                            <div class="gallery-thumbnail" data-modal-target="#dfm-modal">
+                                <img src="dfm_tsne.png" alt="DFM Latent Representation Results" class="thumbnail-bg">
+                                <div class="thumbnail-overlay">
+                                    <span class="thumbnail-icon">🖼️</span>
+                                    <span class="thumbnail-text">View Gallery (4 Images)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h3>CA-AFP: Cluster-Aware Adaptive Federated Pruning for Heterogeneous FL</h3>
+                            <p style="color: #8ab4f8; font-weight: 600; margin-bottom: 8px;">Under Submission at ACM IKDD CoDS-COMAD 2026</p>
+                            <p>CA-AFP is a clustered dynamic sparse federated learning framework engineered for resource-constrained edge computing environments experiencing severe statistical (non-IID) and system heterogeneity. We integrate a dynamic "Prune-and-Heal" parameter exploration with trajectory-cosine client clustering, enabling client groups with similar data distributions to collaboratively discover personalized sparse network topologies.</p>
+                            <p>Our hybrid importance scoring mechanism evaluates weight magnitude, intra-cluster coherence, and gradient consistency during iterative pruning and regrowth. Evaluated across CIFAR-10, CIFAR-100, FEMNIST, and WISDM datasets, CA-AFP maintains robust model performance at up to 70% parameter sparsity, significantly reducing communication overhead while improving fairness (minimizing variance in client accuracy).</p>
                             <p><a href="https://github.com/OmGovind15/fl" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
@@ -177,14 +197,10 @@
                     </div>
                     <div class="project">
                         <div class="project-text">
-                            <h3>Adaptive model outcome prediction and SHAP analysis in cricket ODI match</h3>
-                            
-                            <p>This project focused on predicting the outcomes of One Day International (ODI) cricket matches with high accuracy. We worked on making a robust set of features which can efficiently represent information of any particular over of a match.</p>
-                            
-                            <p>Using these set of features we explored various models namely- Logistic Regression, SVM, Random Forest, XGBoost, LDA, Naive Bayes and Neural Network. Since the nature of the game is driven very specifically by innings, we experimented with various settings like training an individual model for all overs in a particular innings, training models individually for each over, and also having the switching model strategy over-wise implemented.</p>
-                            
-                            <p>We observed that in the first innings, training a single model across all overs is much more effective as the winning chances are not sharply affected by any particular over event; it is mostly dependent on the past winning records of the team, which is also clearly visible in the SHAP plot for the 1st innings. However, in the second innings, the match dynamics change very quickly and can be captured better by training models for individual overs, essentially dividing a bigger problem into smaller sub-problems. We could also see the dynamic feature increasing effect in the 2nd innings. This work is useful for creating more specialized and precise predictive tools for sports analytics.</p>
-                            
+                            <h3>Predictive Modeling in ODI Cricket: Training Strategy, Feature Engineering, & Explainability</h3>
+                            <p style="color: #8ab4f8; font-weight: 600; margin-bottom: 8px;">Under Review (Revision Stage) at International Journal of Sports Science & Coaching (SAGE Publications)</p>
+                            <p>This research develops a comprehensive machine learning framework for predicting match outcomes in One Day International (ODI) cricket across 1,394 historical matches (2002–2023). To address realistic operational deployment and eliminate temporal data leakage, we implemented a rigorous chronological expanding-window cross-validation strategy.</p>
+                            <p>We engineered granular ball-by-ball and over-by-over situational features and benchmarked multiple models including Logistic Regression, SVM, Random Forest, XGBoost, and Deep Neural Networks. Our findings establish that a Unified Inning Model performs best in the first innings where win probabilities evolve smoothly with overall run-rate and historical team form. Conversely, the second innings is governed by volatile chasing dynamics, where our proposed adaptive Over-Wise Model Switching strategy achieves an outstanding 84.6% prediction accuracy. Game-theoretic SHAP interpretability analysis quantitatively illustrates how feature importance transitions across key phases of the game.</p>
                             <p><a href="https://github.com/OmGovind15/Adaptive-model-outcome-prediction-cricket-ODI-match" target="_blank">View Code on GitHub</a></p>
                         </div>
                         <div class="project-image">
@@ -310,14 +326,27 @@
         </main>
     </div>
 
-    <div class="modal" id="localised-learning-modal">
+    <div class="modal" id="mambl-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Localised Learning Project Results</h2>
+            <h2>MAMBL: Modality-Aware Multi-Branch Learning Results</h2>
             <div class="modal-grid">
-                <img src="no_prop_result.png" alt="NoProp Result">
-                <img src="backprop_result.png" alt="Backprop Result">
-                <img src="memory_pascal.png" alt="Memory Pascal Chart">
+                <img src="icmi26-100-fig1.jpg" alt="MAMBL Multi-Branch Architecture Overview">
+                <img src="icmi26-100-fig2.jpg" alt="Modality Sparsity and Autocorrelation Analysis">
+                <img src="icmi26-100-fig3.jpg" alt="Temporal Attention Weights and Saliency Maps">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="dfm-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Teacher-Guided Discriminative Flow Matching (DFM) Results</h2>
+            <div class="modal-grid">
+                <img src="dfm_tsne.png" alt="t-SNE Latent Feature Representations">
+                <img src="dfm_reliability.png" alt="Reliability Diagrams and Expected Calibration Error">
+                <img src="dfm_vector_paths.png" alt="Learned Flow Matching Vector Field Paths">
+                <img src="dfm_gate.png" alt="Learned Scalar Gating Parameter Dynamics">
             </div>
         </div>
     </div>
@@ -325,12 +354,15 @@
     <div class="modal" id="cricket-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Adaptive Model Project Results</h2>
+            <h2>Adaptive Model Cricket ODI Prediction Results</h2>
             <div class="modal-grid">
-                <img src="cricket5.png" alt="SHAP Heatmap 2nd Innings">
-                <img src="cricket6.png" alt="SHAP Heatmap 1st Innings">
-                
-                </div>
+                <img src="cricket1.png" alt="Innings Progression Accuracy Analysis">
+                <img src="cricket2.png" alt="Over-Wise Model Comparison">
+                <img src="cricket3.png" alt="Cumulative Match Metrics">
+                <img src="cricket4.png" alt="Model Calibration and Switching ROC">
+                <img src="cricket5.png" alt="SHAP Summary Plot - 2nd Innings Over Dynamics">
+                <img src="cricket6.png" alt="SHAP Summary Plot - 1st Innings Prior Importance">
+            </div>
         </div>
     </div>
 
